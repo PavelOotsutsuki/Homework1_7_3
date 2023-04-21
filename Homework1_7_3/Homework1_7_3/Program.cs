@@ -37,8 +37,6 @@ namespace Homework1_7_3
                 new Patient("Смирнов Петр Иванович",78,"Пневмония"),
                 new Patient("Федорова Дарья Борисовна",27,"Дистрофия"),
                 new Patient("Сохина Ксения Павловна",25,"СДВГ")
-
-
             };
 
             _isSearched = true;
