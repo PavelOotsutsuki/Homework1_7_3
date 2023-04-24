@@ -45,9 +45,9 @@ namespace Homework1_7_3
         public void Work()
         {
             const string ResetFiltersCommand = "0";
-            const string DoFullNameSortingCommand = "1";
-            const string DoAgeSortingCommand = "2";
-            const string DoIllnessSortingCommand = "3";
+            const string SortByFullNameCommand = "1";
+            const string SortByAgeCommand = "2";
+            const string FilterByIllnessCommand = "3";
             const string ExitCommand = "4";
 
             bool isWork = true;
@@ -58,9 +58,9 @@ namespace Homework1_7_3
                 Console.Clear();
                 Console.WriteLine("БОЛЬНИЦА:\n");
                 Console.WriteLine($"{ResetFiltersCommand}. Сбросить все фильтры");
-                Console.WriteLine($"{DoFullNameSortingCommand}. Отсортировать всех больных по ФИО");
-                Console.WriteLine($"{DoAgeSortingCommand}. Отсортировать всех больных по возрасту");
-                Console.WriteLine($"{DoIllnessSortingCommand}. Вывести больных с определенным заболеванием");
+                Console.WriteLine($"{SortByFullNameCommand}. Отсортировать всех больных по ФИО");
+                Console.WriteLine($"{SortByAgeCommand}. Отсортировать всех больных по возрасту");
+                Console.WriteLine($"{FilterByIllnessCommand}. Вывести больных с определенным заболеванием");
                 Console.WriteLine($"{ExitCommand}. Закончить работу");
                 Console.Write("\nВведите номер команды: ");
 
@@ -72,16 +72,16 @@ namespace Homework1_7_3
                         ResetFilters();
                         break;
 
-                    case DoFullNameSortingCommand:
-                        DoFullNameSorting();
+                    case SortByFullNameCommand:
+                        SortByFullName();
                         break;
 
-                    case DoAgeSortingCommand:
-                        DoAgeSorting();
+                    case SortByAgeCommand:
+                        SortByAge();
                         break;
 
-                    case DoIllnessSortingCommand:
-                        DoIllnessSorting();
+                    case FilterByIllnessCommand:
+                        FilterByIllness();
                         break;
 
                     case ExitCommand:
@@ -93,32 +93,34 @@ namespace Homework1_7_3
                         break;
                 }
 
+                if (isWork)
+                {
+                    ShowListPrisoners();
+                }
+
                 Console.ReadKey();
             }
         }
 
-        private void DoFullNameSorting()
+        private void SortByFullName()
         {
             _filtredPatients = _filtredPatients.OrderBy(patient => patient.FullName);
             _isSearched = true;
-            ShowListPrisoners();
         }
 
-        private void DoAgeSorting()
+        private void SortByAge()
         {
             _filtredPatients = _filtredPatients.OrderBy(patient => patient.Age);
             _isSearched = true;
-            ShowListPrisoners();
         }
 
-        private void DoIllnessSorting()
+        private void FilterByIllness()
         {
             Console.Write("Введите название заболевания: ");
             string userInput = Console.ReadLine();
 
             _filtredPatients = _filtredPatients.Where(patient => patient.Illness == userInput);
             _isSearched = true;
-            ShowListPrisoners();
         }
 
         private void ShowListPrisoners()
